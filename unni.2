@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unni</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F4F1;--surface:#FFFFFF;--ink:#16243A;--muted:#5B677A;--line:#DCE0E5;--accent:#F2B800;--on-accent:#16243A;--brand:#1E4E8C;--ok:#1E7A55;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1625;--surface:#172134;--ink:#EEF1F5;--muted:#9BA7B9;--line:#2A3649;--brand:#8DB8F2;--ok:#5FD1A0;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.4 Figtree,system-ui,sans-serif}
+h2{font:800 1.2rem "Bricolage Grotesque",Figtree,sans-serif;margin:0}h3{font:800 1.05rem "Bricolage Grotesque",Figtree,sans-serif;margin:18px 0 8px}
+.wrap{max-width:560px;margin:0 auto;padding:14px 16px 110px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.brand{font:800 1.3rem "Bricolage Grotesque",sans-serif;display:flex;align-items:center;gap:8px}
+.brand i{background:var(--accent);color:var(--on-accent);width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-style:normal;font-size:1rem}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+textarea{min-height:80px;resize:vertical}
+label{display:block;font-weight:600;font-size:.9rem;margin:6px 0 4px}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+small,.muted{color:var(--muted);font-size:.85rem}
+.scr{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.scr>*{flex:none}
+.cat{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.8rem;font-weight:500;width:70px;padding:0}
+.cat i{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-size:1.6rem;font-style:normal;background:var(--surface);border:2px solid var(--line)}
+.cat[aria-pressed="true"] i{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 25%,var(--surface))}
+.cv{position:relative;overflow:hidden;display:grid;place-items:center;width:100%;height:100%}
+.cv::after{content:"";position:absolute;right:-20%;top:-30%;width:70%;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.18)}
+.em{font-size:2.2rem;position:relative;z-index:1}
+.rc{display:flex;gap:12px;width:100%;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:10px;margin-bottom:10px}
+.th{flex:none;width:92px;height:92px;border-radius:12px;overflow:hidden}
+.info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.st{color:#B07F00;font-weight:600}
+@media (prefers-color-scheme:dark){.st{color:var(--accent)}}
+.tag{display:inline-block;font-size:.74rem;font-weight:600;border-radius:6px;padding:2px 7px;background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:14px;font-weight:600;background:var(--accent);color:var(--on-accent);margin-top:8px}
+.btn.alt{background:transparent;border:1.5px solid var(--ink)}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:.88rem}
+.hero{height:170px;margin:-14px -16px 0;position:relative}.hero .em{font-size:4.5rem}
+.back{position:absolute;left:14px;top:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:var(--surface);font-size:1.3rem;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sheet,.box{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+.sheet{margin-top:-26px;position:relative;padding:14px}
+.sv{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.sv:last-child{border-bottom:0}
+.stp{display:flex;align-items:center;gap:8px;flex:none}
+.stp button{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--ink);background:var(--surface);font-size:1.1rem;line-height:1}
+.stp button.p{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+.bar{position:fixed;left:12px;right:12px;bottom:calc(66px + env(safe-area-inset-bottom,0px));max-width:536px;margin:0 auto;z-index:6;animation:up .25s ease-out}
+@keyframes up{from{transform:translateY(24px);opacity:0}}
+.bar button{width:100%;display:flex;justify-content:space-between;border:0;border-radius:14px;padding:14px 16px;background:var(--ink);color:var(--bg);font-weight:600}
+.bar .cnt{background:var(--accent);color:var(--on-accent);border-radius:8px;padding:0 9px}
+.stars button{background:none;border:0;font-size:1.7rem;color:var(--accent);padding:2px}
+.empty{text-align:center;padding:30px 8px;color:var(--muted)}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1.5px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav button{flex:1;background:none;border:0;padding:8px 4px;font-weight:500;color:var(--muted);display:flex;flex-direction:column;align-items:center;font-size:.8rem}
+nav button[aria-current="page"]{color:var(--ink);font-weight:600;box-shadow:inset 0 3px 0 var(--accent)}
+#toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(12px + env(safe-area-inset-top,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;max-width:88%;z-index:20;display:none;font-size:.92rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="brand"><i>🧰</i>Unni</div><span id="out"></span></div>
+  <main id="main"></main>
+</div>
+<nav id="nav"></nav>
+<div id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+// ===== CONFIGURAÇÃO: cole aqui os dois dados públicos do seu projeto no Supabase =====
+const SUPABASE_URL='https://bgwnejtalwoxcmdbvbrj.supabase.co';
+const SUPABASE_KEY='sb_publishable_jooJb2UxIBb3TcxjeOrTjw_rYovR8Zq';
+// =====================================================================================
+if(SUPABASE_URL.startsWith('COLE_AQUI')){document.body.innerHTML='<p style="padding:24px;font:16px system-ui">Falta configurar o Unni: cole o Project URL e a chave pública do Supabase no começo do arquivo index.html.</p>';throw new Error('config')}
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=s=>document.querySelector(s);
+const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const brl=n=>'R$ '+Number(n).toFixed(2).replace('.',',').replace(',00','');
+const GR=['#F2B800,#E07B00','#E85D9A,#9B3FC4','#8A5A3C,#4B2E1E','#2F80ED,#1B4F9C','#14A3B8,#0B5E8C','#4CAF50,#1E7A55'];
+const ERR={'Invalid login credentials':'E-mail ou senha incorretos.','User already registered':'Este e-mail já tem conta. Use Entrar.','Password should be at least':'A senha precisa ter ao menos 6 caracteres.','Email not confirmed':'Confirme seu e-mail antes de entrar.'};
+const S={role:'c',user:null,mine:null,tab:'home',cats:[],list:[],cat:0,q:'',sel:null,rev:[],co:0,cart:{pid:null,q:{}},orders:[],done:new Set(),auth:'in',loading:true};
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',3600)}
+const err=e=>{const k=Object.keys(ERR).find(k=>(e.message||'').includes(k));toast(k?ERR[k]:'Não foi possível concluir: '+e.message)};
+const ok=r=>{if(r.error){err(r.error);return false}return true};
+const byId=id=>S.list.find(p=>p.id===id);
+const minP=p=>p.services.length?Math.min(...p.services.map(s=>s.price)):0;
+const rt=p=>p.rating_count?`<span class="st">★ ${Number(p.rating_avg).toFixed(1)}</span> (${p.rating_count})`:'<span class="st">Novo</span>';
+const cnt=()=>Object.values(S.cart.q).reduce((a,b)=>a+b,0);
+const tot=()=>{const p=byId(S.cart.pid);return p?Object.entries(S.cart.q).reduce((a,[i,q])=>a+p.services[i].price*q,0):0};
+const cover=(p,cls)=>`<div class="${cls}"><div class="cv" style="background:${p.photo_url?`url('${esc(p.photo_url)}') center/cover`:`linear-gradient(135deg,${GR[((p.category_id||1)-1)%6]})`}">${p.photo_url?'':`<span class="em">${esc(p.categories.emoji)}</span>`}</div></div>`;
+
+async function loadProviders(){
+  const {data,error}=await sb.from('providers').select('*,categories(name,emoji),services(*)').order('rating_avg',{ascending:false}).order('id',{referencedTable:'services'});
+  if(error)return toast(error.message);
+  S.list=data;S.mine=S.user?data.find(p=>p.id===S.user.id)||null:null;
+}
+async function loadOrders(){
+  S.orders=[];if(!S.user)return;
+  const uid=S.user.id;
+  const {data,error}=await sb.from('requests').select('*,request_items(*),prov:providers!provider_id(name),client:profiles!client_id(name,phone)').or(`client_id.eq.${uid},provider_id.eq.${uid}`).order('created_at',{ascending:false});
+  if(error)return toast(error.message);
+  S.orders=data;
+  const r=await sb.from('reviews').select('request_id').eq('client_id',uid);
+  S.done=new Set((r.data||[]).map(x=>x.request_id));
+}
+async function refresh(){await loadProviders();await loadOrders();S.loading=false}
+
+function feed(){
+  if(S.loading)return '<div class="empty">Carregando…</div>';
+  const q=S.q.toLowerCase();
+  const r=S.list.filter(p=>p.approved&&(!S.cat||p.category_id===S.cat)&&(!q||(p.name+p.categories.name+p.services.map(s=>s.name).join(' ')).toLowerCase().includes(q)));
+  return r.length?r.map(p=>`<button class="rc" data-a="open" data-v="${p.id}">${cover(p,'th')}<span class="info"><b>${esc(p.name)}</b><small>${rt(p)} ${esc(p.categories.name)} em ${esc(p.bairro)}</small>${p.services.length?`<small>A partir de <b>${brl(minP(p))}</b></small>`:''}<span class="tag" style="align-self:flex-start">${p.verified?'Verificado':'Orçamento grátis'}</span></span></button>`).join(''):'<div class="empty">Nenhum prestador por aqui ainda. Cadastre o primeiro na aba Sou prestador.</div>';
+}
+function homeView(){
+  return `<input id="q" type="search" placeholder="Buscar: bainha, tomada, chuveiro…" value="${esc(S.q)}" aria-label="Buscar serviço">
+  <div class="scr"><button class="cat" data-a="cat" data-v="0" aria-pressed="${!S.cat}"><i>✨</i>Todos</button>${S.cats.map(c=>`<button class="cat" data-a="cat" data-v="${c.id}" aria-pressed="${S.cat===c.id}"><i>${esc(c.emoji)}</i>${esc(c.name.split(' ')[0])}</button>`).join('')}</div>
+  <h3>Prestadores em Uberaba</h3><div id="feed">${feed()}</div>`;
+}
+function stepper(i){
+  const q=S.cart.q[i]||0;
+  return q?`<div class="stp"><button data-a="sub" data-v="${i}" aria-label="Remover">−</button><b>${q}</b><button class="p" data-a="add" data-v="${i}" aria-label="Adicionar">+</button></div>`:`<div class="stp"><button class="p" data-a="add" data-v="${i}" aria-label="Adicionar">+</button></div>`;
+}
+function profileView(){
+  const p=byId(S.sel),n=S.cart.pid===p.id?cnt():0;
+  return `<div class="hero">${cover(p,'cv0').replace('class="cv0"','class="cv0" style="height:100%"')}<button class="back" data-a="back" aria-label="Voltar">‹</button></div>
+  <div class="sheet"><h2>${esc(p.name)}</h2><small>${esc(p.categories.name)} em ${esc(p.bairro)}</small><br><small>${rt(p)}</small>${p.description?`<p style="margin:8px 0 0">${esc(p.description)}</p>`:''}</div>
+  <h3>Serviços</h3><div class="box" style="padding:2px 12px">${p.services.length?p.services.map((s,i)=>`<div class="sv"><div class="info"><b>${esc(s.name)}</b><small>${brl(s.price)}</small></div>${stepper(i)}</div>`).join(''):'<div class="sv"><small>Este prestador ainda não cadastrou serviços.</small></div>'}</div>
+  <h3>Avaliações</h3><div class="box">${S.rev.length?S.rev.map(x=>`<p style="margin:4px 0"><span class="st">${'★'.repeat(x.stars)}</span><br><small>${esc(x.comment)}</small></p>`).join(''):'<small>Ainda sem avaliações.</small>'}</div>`+
+  (n?`<div class="bar"><button data-a="co"><span class="cnt">${n}</span><span>Ver pedido</span><span>${brl(tot())}</span></button></div>`:'');
+}
+function coView(){
+  const p=byId(S.cart.pid);
+  return `<button class="chip" data-a="back" style="margin-bottom:10px">‹ Voltar</button><h2>Seu pedido para ${esc(p.name)}</h2>
+  <div class="box" style="padding:2px 12px">${Object.entries(S.cart.q).map(([i,q])=>`<div class="sv"><div class="info"><b>${esc(p.services[i].name)}</b><small>${brl(p.services[i].price*q)}</small></div>${stepper(i)}</div>`).join('')}<div class="sv"><div class="info"><b>Total estimado</b><small>O valor final vem no orçamento do prestador.</small></div><b>${brl(tot())}</b></div></div>
+  <label for="note">Quer detalhar o serviço? (opcional)</label><textarea id="note" placeholder="Ex.: o chuveiro é de 5500 W, no banheiro de cima"></textarea>
+  <label for="urg">Quando precisa?</label><select id="urg"><option>Hoje</option><option selected>Esta semana</option><option>Sem pressa</option></select>
+  <button class="btn" data-a="send">Enviar pedido</button>`;
+}
+function authView(why){
+  const up=S.auth==='up';
+  return `<h2>${up?'Criar conta':'Entrar'}</h2><p class="muted">${why}</p>
+  ${up?`<label for="an">Seu nome</label><input id="an" autocomplete="name"><label for="ap">WhatsApp com DDD</label><input id="ap" inputmode="tel" autocomplete="tel">
+  <label for="ar">O que você quer fazer?</label><select id="ar"><option value="c" ${S.role==='c'?'selected':''}>Pedir serviços</option><option value="p" ${S.role==='p'?'selected':''}>Oferecer meus serviços</option></select>
+  <div id="pf" ${S.role==='p'?'':'hidden'}><label for="jc">Qual serviço você faz?</label><select id="jc">${S.cats.map(c=>`<option value="${c.id}">${esc(c.emoji)} ${esc(c.name)}</option>`).join('')}</select>
+  <label for="jb">Bairro onde atende</label><input id="jb" placeholder="Ex.: Mercês"><label for="jd">Sobre você</label><textarea id="jd" placeholder="Conte sua experiência"></textarea>
+  <label for="js">Seu primeiro serviço</label><input id="js" placeholder="Ex.: Troca de tomada"><label for="jp">Preço (R$)</label><input id="jp" type="number" min="1" inputmode="decimal">
+  <label for="jf">Foto do seu trabalho (opcional)</label><input id="jf" type="file" accept="image/*"></div>`:''}
+  <label for="ae">E-mail</label><input id="ae" type="email" autocomplete="email"><label for="as">Senha</label><input id="as" type="password" autocomplete="${up?'new-password':'current-password'}">
+  <button class="btn" data-a="authgo">${up?'Criar conta':'Entrar'}</button><button class="btn alt" data-a="authsw">${up?'Já tenho conta':'Quero criar conta'}</button>`;
+}
+function ordersView(){
+  if(!S.user)return authView('Entre para ver seus pedidos.');
+  if(!S.orders.length)return '<h2>Pedidos</h2><div class="empty">Nenhum pedido ainda.</div>';
+  const L={pending:'Aguardando orçamento',quoted:'Orçamento recebido',accepted:'Combinado',done:'Concluído',cancelled:'Cancelado'};
+  return '<h2>Pedidos</h2>'+S.orders.map(o=>{
+    const cl=o.client_id===S.user.id;let a='';
+    if(cl){
+      if(o.status==='quoted')a=`<button class="btn" data-a="oset" data-v="${o.id}" data-s="accepted">Aceitar orçamento de ${brl(o.quote_price)}</button>`;
+      if(o.status==='done'&&!S.done.has(o.id))a=`<p>Como foi o serviço?</p><div class="stars">${[1,2,3,4,5].map(n=>`<button data-a="star" data-v="${o.id}" data-n="${n}" aria-label="${n} estrelas">★</button>`).join('')}</div>`;
+    }else{
+      if(o.status==='pending')a=`<label for="qp${o.id}">Seu orçamento (R$)</label><input id="qp${o.id}" type="number" min="1" inputmode="decimal"><button class="btn" data-a="quote" data-v="${o.id}">Enviar orçamento</button>`;
+      if(o.status==='accepted')a=`<button class="btn" data-a="oset" data-v="${o.id}" data-s="done">Marcar como concluído</button>`;
+    }
+    if(['pending','quoted','accepted'].includes(o.status))a+=`<button class="btn alt" data-a="oset" data-v="${o.id}" data-s="cancelled">Cancelar</button>`;
+    const ph=!cl&&o.client&&o.client.phone?o.client.phone.replace(/\D/g,''):'';
+    return `<div class="box"><b>${cl?esc(o.prov.name):esc((o.client&&o.client.name)||'Cliente')}</b> <span class="tag">${cl?'Você pediu':'Pedido recebido'}</span><br><small>${L[o.status]}, ${esc(o.urgency)}${o.quote_price?`, orçamento ${brl(o.quote_price)}`:''}</small>
+    <p style="margin:6px 0">${o.request_items.map(i=>`<small>${i.qty}x ${esc(i.service_name)}</small>`).join('<br>')}</p>${o.description?`<p class="muted" style="margin:6px 0">“${esc(o.description)}”</p>`:''}
+    ${ph?`<a class="btn alt" style="text-align:center;text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/55${ph}">Chamar no WhatsApp</a>`:''}${a}</div>`}).join('');
+}
+function provView(){
+  if(!S.user)return authView('Entre para oferecer seus serviços.');
+  const m=S.mine;
+  if(!m)return `<h2>Ofereça seus serviços</h2><p class="muted">Crie seu perfil grátis. Depois de aprovado, ele aparece na busca.</p>
+  <label for="jf">Foto do seu trabalho</label><input id="jf" type="file" accept="image/*">
+  <label for="jn">Nome que os clientes vão ver</label><input id="jn" value="${esc((S.orders[0]&&S.orders[0].client&&S.orders[0].client.name)||'')}">
+  <label for="jc">Qual serviço você faz?</label><select id="jc">${S.cats.map(c=>`<option value="${c.id}">${esc(c.emoji)} ${esc(c.name)}</option>`).join('')}</select>
+  <label for="jb">Bairro onde atende</label><input id="jb" placeholder="Ex.: Mercês">
+  <label for="jd">Sobre você</label><textarea id="jd" placeholder="Conte sua experiência"></textarea>
+  <label for="js">Seu primeiro serviço</label><input id="js" placeholder="Ex.: Troca de tomada"><label for="jp">Preço (R$)</label><input id="jp" type="number" min="1" inputmode="decimal">
+  <button class="btn" data-a="join">Criar meu perfil</button>`;
+  return `<h2>Meu perfil</h2><div class="box"><b>${esc(m.name)}</b> <span class="tag">${m.approved?'Aprovado: aparece na busca':'Aguardando aprovação'}</span><br><small>${esc(m.categories.name)} em ${esc(m.bairro)}</small></div>
+  <h3>Meus serviços</h3><div class="box" style="padding:2px 12px">${m.services.length?m.services.map(s=>`<div class="sv"><div class="info"><b>${esc(s.name)}</b><small>${brl(s.price)}</small></div><button class="chip" data-a="svcdel" data-v="${s.id}">Remover</button></div>`).join(''):'<div class="sv"><small>Nenhum serviço ainda.</small></div>'}</div>
+  <label for="sn">Novo serviço</label><input id="sn"><label for="sp">Preço (R$)</label><input id="sp" type="number" min="1" inputmode="decimal"><button class="btn" data-a="svcadd">Adicionar serviço</button>
+  <p class="muted">Os pedidos que você receber aparecem na aba Pedidos.</p>`;
+}
+function render(){
+  $('#main').innerHTML=S.co?(S.user?coView():authView('Entre para enviar seu pedido.')):S.sel?profileView():S.tab==='home'?homeView():S.tab==='pedidos'?ordersView():provView();
+  const pend=S.orders.filter(o=>o.provider_id===(S.user&&S.user.id)&&o.status==='pending').length;
+  $('#nav').innerHTML=[['home','🏠','Início'],['pedidos','📋','Pedidos'],['prestador','🧰','Sou prestador']].map(t=>`<button data-a="tab" data-v="${t[0]}" ${S.tab===t[0]&&!S.sel&&!S.co?'aria-current="page"':''}><span>${t[1]}</span><span>${t[2]}${t[0]==='pedidos'&&pend?` (${pend})`:''}</span></button>`).join('');
+  $('#out').innerHTML=S.user?'<button class="chip" data-a="logout">Sair</button>':'';
+}
+async function reload(){await refresh();render()}
+async function createProvider(uid,p){
+  let url=null;
+  if(p.file){const path=`${uid}/${Date.now()}-${p.file.name.replace(/[^\w.]/g,'_')}`;const up=await sb.storage.from('fotos').upload(path,p.file);if(!ok(up))return false;url=sb.storage.from('fotos').getPublicUrl(path).data.publicUrl}
+  const cat=S.cats.find(x=>x.id===p.cid);
+  if(!ok(await sb.from('providers').insert({id:uid,name:p.nm,category_id:p.cid,bairro:p.bi,description:p.desc,photo_url:url})))return false;
+  return ok(await sb.from('services').insert({provider_id:uid,name:p.sn,price:p.sp,emoji:cat?cat.emoji:'🛠️'}));
+}
+
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-a]');if(!b)return;
+  const a=b.dataset.a,v=b.dataset.v,c=S.cart,uid=S.user&&S.user.id;
+  if(a==='tab'){S.tab=v;S.role=v==='prestador'?'p':'c';if(v==='prestador'&&!S.user)S.auth='up';S.sel=null;S.co=0;render();scrollTo(0,0);if(v==='pedidos'&&S.user){await loadOrders();render()}}
+  else if(a==='cat'){S.cat=+v;render()}
+  else if(a==='open'){S.sel=v;S.rev=[];render();scrollTo(0,0);const r=await sb.from('reviews').select('stars,comment').eq('provider_id',v).order('created_at',{ascending:false}).limit(10);if(S.sel===v){S.rev=r.data||[];render()}}
+  else if(a==='back'){if(S.co)S.co=0;else S.sel=null;render()}
+  else if(a==='add'){if(c.pid!==S.sel&&!S.co){c.pid=S.sel;c.q={}}c.q[v]=(c.q[v]||0)+1;render()}
+  else if(a==='sub'){c.q[v]--;if(c.q[v]<=0)delete c.q[v];if(!cnt()){S.co=0;S.sel=c.pid}render()}
+  else if(a==='co'){S.co=1;render();scrollTo(0,0)}
+  else if(a==='authsw'){S.auth=S.auth==='up'?'in':'up';render()}
+  else if(a==='authgo'){
+    const em=$('#ae').value.trim(),pw=$('#as').value;
+    if(S.auth==='up'){
+      const n=$('#an').value.trim();if(!n)return toast('Informe seu nome.');
+      const pv=S.role==='p'?{nm:n,cid:+$('#jc').value,bi:$('#jb').value.trim(),desc:$('#jd').value.trim(),file:$('#jf').files[0],sn:$('#js').value.trim(),sp:+$('#jp').value}:null;
+      if(pv&&(!pv.bi||!pv.sn||!(pv.sp>0)))return toast('Preencha bairro, primeiro serviço e preço.');
+      const {data,error}=await sb.auth.signUp({email:em,password:pw,options:{data:{name:n,phone:$('#ap').value.trim()}}});
+      if(error)return err(error);
+      if(!data.session)toast('Enviamos um e-mail de confirmação. Confirme para entrar e complete seu perfil na aba Sou prestador.');
+      else if(pv&&await createProvider(data.user.id,pv)){await reload();toast('Conta criada. Seu perfil aparece na busca depois de aprovado.')}
+    }else{const {error}=await sb.auth.signInWithPassword({email:em,password:pw});if(error)err(error)}
+  }
+  else if(a==='logout'){await sb.auth.signOut()}
+  else if(a==='send'){
+    const p=byId(c.pid);
+    const r=await sb.from('requests').insert({client_id:uid,provider_id:p.id,description:$('#note').value.trim(),urgency:$('#urg').value}).select('id').single();
+    if(!ok(r))return;
+    const items=Object.entries(c.q).map(([i,q])=>({request_id:r.data.id,service_name:p.services[i].name,qty:q,unit_price:p.services[i].price}));
+    if(!ok(await sb.from('request_items').insert(items)))return;
+    c.q={};c.pid=null;S.co=0;S.sel=null;S.tab='pedidos';await loadOrders();render();scrollTo(0,0);toast('Pedido enviado. O prestador vai responder com um orçamento.');
+  }
+  else if(a==='quote'){
+    const pr=+$('#qp'+v).value;if(!(pr>0))return toast('Informe o valor do orçamento.');
+    if(ok(await sb.from('requests').update({status:'quoted',quote_price:pr}).eq('id',v))){await loadOrders();render();toast('Orçamento enviado.')}
+  }
+  else if(a==='oset'){if(ok(await sb.from('requests').update({status:b.dataset.s}).eq('id',v))){await loadOrders();render()}}
+  else if(a==='star'){
+    const o=S.orders.find(x=>x.id==v);
+    if(ok(await sb.from('reviews').insert({request_id:o.id,provider_id:o.provider_id,client_id:uid,stars:+b.dataset.n}))){S.done.add(o.id);await loadProviders();render();toast('Obrigado pela avaliação.')}
+  }
+  else if(a==='join'){
+    const nm=$('#jn').value.trim(),bi=$('#jb').value.trim(),sn=$('#js').value.trim(),sp=+$('#jp').value;
+    if(!nm||!bi||!sn||!(sp>0))return toast('Preencha nome, bairro, primeiro serviço e preço.');
+    let url=null;const f=$('#jf').files[0];
+    if(f){const path=`${uid}/${Date.now()}-${f.name.replace(/[^\w.]/g,'_')}`;const up=await sb.storage.from('fotos').upload(path,f);if(!ok(up))return;url=sb.storage.from('fotos').getPublicUrl(path).data.publicUrl}
+    const cid=+$('#jc').value,cat=S.cats.find(x=>x.id===cid);
+    if(!ok(await sb.from('providers').insert({id:uid,name:nm,category_id:cid,bairro:bi,description:$('#jd').value.trim(),photo_url:url})))return;
+    if(!ok(await sb.from('services').insert({provider_id:uid,name:sn,price:sp,emoji:cat.emoji})))return;
+    await reload();toast('Perfil criado. Ele aparece na busca depois de aprovado.');
+  }
+  else if(a==='svcadd'){
+    const n=$('#sn').value.trim(),pr=+$('#sp').value;if(!n||!(pr>0))return toast('Informe o serviço e o preço.');
+    if(ok(await sb.from('services').insert({provider_id:uid,name:n,price:pr,emoji:S.mine.categories.emoji})))await reload();
+  }
+  else if(a==='svcdel'){if(ok(await sb.from('services').delete().eq('id',v)))await reload()}
+});
+document.addEventListener('change',e=>{if(e.target.id==='ar'){S.role=e.target.value;$('#pf').hidden=S.role!=='p'}});
+document.addEventListener('input',e=>{if(e.target.id==='q'){S.q=e.target.value;$('#feed').innerHTML=feed()}});
+sb.auth.onAuthStateChange((_ev,s)=>{S.user=s?s.user:null;setTimeout(reload,0)});
+(async()=>{const {data}=await sb.from('categories').select('*').order('id');S.cats=data||[];render()})();
+render();
+</script>
+</body>
+</html>
